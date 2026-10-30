@@ -24,8 +24,8 @@ const en: Dict = {
     priceFrom: 'Rooms from',
     perNight: '/ night',
     cta: (channel: string) => `Message us on ${channel}`,
-    facadeAlt:'Happy Star Hotel building lit up in the evening',
-    bayAlt: 'Aerial view of Nha Trang bay and Tran Phu beach',
+    bannerAlt:
+      'Happy Star Hotel – a comfortable stay in Nha Trang. Clean, comfortable, friendly. 132/40 Hung Vuong, Nha Trang. Hotline +84 935 372 719',
   },
   intro: {
     title: 'A warm little hotel in the heart of Nha Trang',

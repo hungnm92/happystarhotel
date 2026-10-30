@@ -24,8 +24,8 @@ const ko: Dict = {
     priceFrom: '1박',
     perNight: '부터',
     cta: (channel: string) => `${channel} 메시지 보내기`,
-    facadeAlt:'저녁 불빛이 켜진 해피스타 호텔 외관',
-    bayAlt: '하늘에서 본 나트랑 만과 쩐푸 해변',
+    bannerAlt:
+      'Happy Star Hotel – 나트랑에서 편안한 휴가. 깨끗하고 편리하며 친절한 호텔. 132/40 Hung Vuong, 나트랑. 전화 +84 935 372 719',
   },
   intro: {
     title: '나트랑 중심의 따뜻한 호텔',

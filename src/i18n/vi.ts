@@ -22,8 +22,8 @@ const vi = {
     priceFrom: 'Giá từ',
     perNight: '/ đêm',
     cta: (channel: string) => `Nhắn ${channel}`,
-    facadeAlt: 'Mặt tiền Happy Star Hotel lúc lên đèn',
-    bayAlt: 'Vịnh Nha Trang và bãi biển Trần Phú nhìn từ trên cao',
+    bannerAlt:
+      'Happy Star Hotel – Trải nghiệm kỳ nghỉ thoải mái tại Nha Trang. Sạch sẽ, tiện nghi, thân thiện. 132/40 Hùng Vương, Nha Trang. Hotline 0935 372 719',
   },
   intro: {
     title: 'Khách sạn ấm áp giữa lòng Nha Trang',

@@ -18,17 +18,32 @@ const primary = channels(t)[0];
 ---
 
 <section class="hero">
-  <div class="container grid">
+  <Image
+    class="banner"
+    src={asset('hotel/banner.webp')}
+    alt={t.hero.bannerAlt}
+    widths={[800, 1200, 1600, 2000]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+
+  <div class="container bar">
     <div class="copy">
       <h1>{t.hero.title}</h1>
       <p class="lead">{t.hero.lead}</p>
+      <p class="address">
+        <Icon name="pin" size={18} />
+        {contact.address.full}
+      </p>
+    </div>
 
+    <div class="offer">
       <p class="price">
         <span>{t.hero.priceFrom}</span>
         <strong>{formatPrice(locale, minPrice)}</strong>
         <span>{t.hero.perNight}</span>
       </p>
-
       <div class="actions">
         <a class="btn btn-sun" href={primary.href} target="_blank" rel="noopener" data-cta={`hero-${primary.key}`}>
           <Icon name={primary.icon} />
@@ -39,74 +54,66 @@ const primary = channels(t)[0];
           {contact.phoneDisplay}
         </a>
       </div>
-
-      <p class="address">
-        <Icon name="pin" size={18} />
-        {contact.address.full}
-      </p>
-    </div>
-
-    <div class="postcard">
-      <Image
-        class="bay"
-        src={asset('hotel/nha-trang-bay.jpg')}
-        alt={t.hero.bayAlt}
-        widths={[640, 960, 1400]}
-        sizes="(max-width: 860px) 100vw, 55vw"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <Image
-        class="facade"
-        src={asset('hotel/facade-cutout.png')}
-        alt={t.hero.facadeAlt}
-        widths={[360, 560, 800]}
-        sizes="(max-width: 860px) 52vw, 26vw"
-        format="webp"
-        loading="eager"
-      />
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    background: linear-gradient(180deg, var(--foam) 0%, var(--white) 100%);
-    overflow: hidden;
+    background: linear-gradient(180deg, var(--white) 0%, var(--foam) 100%);
   }
 
-  .grid {
+  /* Banner chính thức của khách sạn, giữ nguyên tỉ lệ 3:1 */
+  .banner {
+    display: block;
+    width: 100%;
+    max-width: 2000px;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .bar {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    align-items: end;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: center;
     gap: clamp(1.5rem, 4vw, 3.5rem);
-    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(1.75rem, 4vw, 3rem);
   }
 
   .copy {
     display: grid;
-    gap: 1.25rem;
-    padding-bottom: clamp(2.5rem, 6vw, 5rem);
-    align-self: center;
+    gap: 0.75rem;
   }
 
   h1 {
-    font-size: var(--step-4);
+    font-size: var(--step-3);
     font-weight: 900;
     color: var(--ink);
-    max-width: 14ch;
-  }
-
-  :lang(ko) h1,
-  :lang(ru) h1 {
-    max-width: 16ch;
+    max-width: 22ch;
   }
 
   .lead {
-    font-size: var(--step-1);
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--muted);
-    max-width: 34rem;
+    max-width: 36rem;
+  }
+
+  .address {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+
+  .offer {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    background: var(--white);
+    border: 2px solid var(--foam);
+    border-radius: var(--radius);
   }
 
   .price {
@@ -137,61 +144,17 @@ const primary = channels(t)[0];
     font-size: 1.05rem;
   }
 
-  .address {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: var(--step--1);
-    color: var(--muted);
-  }
-
-  /* Ảnh vịnh Nha Trang + toà nhà khách sạn đứng phía trước */
-  .postcard {
-    position: relative;
-    aspect-ratio: 5 / 5.4;
-    align-self: end;
-  }
-
-  .bay {
-    position: absolute;
-    inset: 22% 0 0 0;
-    width: 100%;
-    height: 78%;
-    object-fit: cover;
-    object-position: 30% 50%;
-    border-radius: var(--radius) var(--radius) 0 0;
-  }
-
-  .facade {
-    position: absolute;
-    right: 5%;
-    bottom: 0;
-    width: 60%;
-    height: auto;
-    filter: drop-shadow(0 18px 24px rgb(10 46 99 / 0.35));
-  }
-
   @media (max-width: 860px) {
-    .grid {
+    .bar {
       grid-template-columns: 1fr;
-      padding-top: 1.5rem;
+      padding-top: 1.25rem;
     }
-    .copy {
-      padding-bottom: 2.5rem;
+    h1 {
+      font-size: var(--step-2);
     }
-    /* Trên điện thoại: ảnh khách sạn lên trước để thấy ngay */
-    .postcard {
-      order: -1;
-      aspect-ratio: 16 / 12;
-      margin-inline: calc(var(--gutter) * -1);
-      margin-top: -1.5rem;
-    }
-    .bay {
-      border-radius: 0;
-    }
-    .facade {
-      width: 44%;
-      right: 8%;
+    .actions,
+    .actions .btn {
+      width: 100%;
     }
   }
 </style>

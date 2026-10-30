@@ -45,4 +45,8 @@ Mọi nút liên hệ có thuộc tính `data-cta` (vd. `hero-zalo`, `room-whats
 ## Ghi chú
 
 - Bản dịch tiếng Hàn và tiếng Nga do máy soạn — nên nhờ người bản ngữ đọc lại trước khi quảng bá.
-- Ảnh mặt tiền và ảnh vịnh Nha Trang trong phần đầu trang được tách từ file PDF giới thiệu (độ phân giải 1024–1600px). Nên thay bằng ảnh gốc nét hơn khi có.
+- Đầu trang dùng banner chính thức `src/assets/hotel/banner.webp` (2000×667, chữ tiếng Việt, dùng chung cho cả 4 ngôn ngữ). Muốn đổi banner thì thay file này, giữ tỉ lệ 3:1.
+
+## Nhánh làm việc
+
+Sửa trên nhánh `dev`, xem ổn rồi mới merge vào `main` — Netlify chỉ deploy khi `main` thay đổi.

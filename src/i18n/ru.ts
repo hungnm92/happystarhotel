@@ -32,8 +32,8 @@ const ru: Dict = {
     priceFrom: 'Номера от',
     perNight: '/ ночь',
     cta: (channel: string) => `Написать в ${channel}`,
-    facadeAlt:'Здание Happy Star Hotel с вечерней подсветкой',
-    bayAlt: 'Залив Нячанга и пляж Чан Фу с высоты',
+    bannerAlt:
+      'Happy Star Hotel – комфортный отдых в Нячанге. Чисто, удобно, дружелюбно. 132/40 Hung Vuong, Нячанг. Телефон +84 935 372 719',
   },
   intro: {
     title: 'Уютный отель в центре Нячанга',
