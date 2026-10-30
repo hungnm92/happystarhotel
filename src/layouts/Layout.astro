@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+import { contact } from '../data/contact';
+import { minPrice, maxPrice, totalRooms } from '../data/rooms';
+import { locales, localePath, type Locale } from '../i18n';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  locale: Locale;
+  t: Dict;
+}
+
+const { locale, t } = Astro.props;
+const site = Astro.site!;
+const canonical = new URL(localePath(locale), site).href;
+const ogImage = new URL('/og-image.jpg', site).href;
+const ogLocale = { vi: 'vi_VN', en: 'en_US', ko: 'ko_KR', ru: 'ru_RU' }[locale];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Hotel',
+  name: contact.name,
+  url: canonical,
+  image: ogImage,
+  logo: new URL('/apple-touch-icon.png', site).href,
+  description: t.meta.description,
+  telephone: contact.phoneIntl,
+  email: contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: contact.address.street,
+    addressLocality: contact.address.city,
+    addressRegion: contact.address.region,
+    addressCountry: contact.address.country,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: contact.geo.lat, longitude: contact.geo.lng },
+  hasMap: contact.mapsLink,
+  starRating: { '@type': 'Rating', ratingValue: 3 },
+  numberOfRooms: totalRooms,
+  priceRange: `${minPrice.toLocaleString('vi-VN')}₫ – ${maxPrice.toLocaleString('vi-VN')}₫`,
+  currenciesAccepted: 'VND',
+  checkinTime: contact.checkIn,
+  checkoutTime: contact.checkOut,
+  amenityFeature: t.amenities.services.map((name) => ({
+    '@type': 'LocationFeatureSpecification',
+    name,
+    value: true,
+  })),
+  sameAs: [contact.facebook, contact.agoda],
+};
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={new URL(localePath(l), site).href} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL('/', site).href} />
+
+    <meta name="theme-color" content="#0d4da1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={contact.name} />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,151 @@
+---
+import Icon from './Icon.astro';
+import { channels } from '../lib/cta';
+import { contact } from '../data/contact';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+const list = channels(t);
+---
+
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2>{t.contact.title}</h2>
+      <p>{t.contact.lead}</p>
+    </div>
+
+    <ul class="channels">
+      {
+        list.map((c, i) => (
+          <li>
+            <a
+              class:list={['channel', { primary: i === 0 }]}
+              href={c.href}
+              target={c.external ? '_blank' : undefined}
+              rel={c.external ? 'noopener' : undefined}
+              data-cta={`contact-${c.key}`}
+            >
+              <Icon name={c.icon} size={28} />
+              <span class="label">{c.label}</span>
+              <span class="detail">
+                {c.key === 'call' ? contact.phoneDisplay : null}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <dl class="info">
+      <div>
+        <dt>{t.contact.hotline}</dt>
+        <dd><a href={`tel:${contact.phoneIntl}`}>{contact.phoneDisplay}</a></dd>
+      </div>
+      <div>
+        <dt>{t.contact.address}</dt>
+        <dd>{contact.address.full}</dd>
+      </div>
+      <div>
+        <dt>Email</dt>
+        <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .contact .section-head p {
+    color: #c7d6ec;
+  }
+
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .channel {
+    display: grid;
+    justify-items: start;
+    align-content: start;
+    gap: 0.4rem;
+    height: 100%;
+    padding: 1.25rem;
+    border-radius: var(--radius-sm);
+    background: rgb(255 255 255 / 0.08);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    color: var(--white);
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .channel:hover {
+    background: rgb(255 255 255 / 0.16);
+  }
+
+  .channel.primary {
+    background: var(--sun);
+    border-color: var(--sun);
+    color: var(--ink);
+  }
+
+  .channel.primary:hover {
+    background: var(--sun-deep);
+  }
+
+  .label {
+    font-size: var(--step-1);
+    font-weight: 900;
+  }
+
+  .detail {
+    font-size: var(--step--1);
+    opacity: 0.85;
+    overflow-wrap: anywhere;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: auto 1.4fr auto;
+    gap: 1rem 2.5rem;
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(255 255 255 / 0.16);
+  }
+
+  dt {
+    font-size: var(--step--1);
+    color: #a9bfdf;
+  }
+
+  dd {
+    margin: 0.15rem 0 0;
+    font-weight: 700;
+  }
+
+  dd a {
+    color: var(--white);
+  }
+
+  @media (max-width: 960px) {
+    .channels {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .channels li:first-child {
+      grid-column: 1 / -1;
+    }
+    .info {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

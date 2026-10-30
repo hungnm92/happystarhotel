@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Intro from './Intro.astro';
+import Rooms from './Rooms.astro';
+import Amenities from './Amenities.astro';
+import Reviews from './Reviews.astro';
+import Gallery from './Gallery.astro';
+import Location from './Location.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+import MobileBar from './MobileBar.astro';
+import Lightbox from './Lightbox.astro';
+import { getDict, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDict(locale);
+---
+
+<Layout locale={locale} t={t}>
+  <Header locale={locale} t={t} />
+  <main>
+    <Hero locale={locale} t={t} />
+    <Intro t={t} />
+    <Rooms locale={locale} t={t} />
+    <Amenities t={t} />
+    <Reviews locale={locale} t={t} />
+    <Gallery t={t} />
+    <Location locale={locale} t={t} />
+    <Contact t={t} />
+  </main>
+  <Footer t={t} />
+  <MobileBar t={t} />
+  <Lightbox t={t} />
+</Layout>
+
+<script>
+  // Ghi nhận lượt bấm nút liên hệ nếu đã gắn GA4 (gtag) hoặc Plausible
+  document.addEventListener('click', (e) => {
+    const el = (e.target as HTMLElement).closest<HTMLElement>('[data-cta]');
+    if (!el) return;
+    const w = window as any;
+    const props = { cta: el.dataset.cta, room: el.dataset.room ?? '', lang: document.documentElement.lang };
+    w.gtag?.('event', 'contact_click', props);
+    w.plausible?.('Contact click', { props });
+  });
+</script>

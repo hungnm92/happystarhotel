@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { asset } from '../lib/images';
+import { contact } from '../data/contact';
+import { getDict, locales, localePath } from '../i18n';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container row">
+    <div class="brand">
+      <Image src={asset('brand/logo.webp')} alt="Happy Star Hotel" width={88} height={88} />
+      <p>{t.footer.tagline}</p>
+    </div>
+
+    <ul class="langs">
+      {locales.map((l) => <li><a href={localePath(l)} hreflang={l} lang={l}>{getDict(l).langLabel}</a></li>)}
+    </ul>
+
+    <a class="fb" href={contact.facebook} target="_blank" rel="noopener" data-cta="footer-facebook">
+      <Icon name="facebook" size={22} />
+      Facebook
+    </a>
+  </div>
+  <div class="container legal">
+    <p>© {year} {contact.name}. {t.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #072149;
+    color: #c7d6ec;
+    padding-block: 2.5rem calc(2rem + env(safe-area-inset-bottom));
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem 2.5rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-inline-end: auto;
+  }
+
+  .brand img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  .langs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+
+  a {
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .fb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .legal {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 760px) {
+    .footer {
+      padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+    }
+  }
+</style>

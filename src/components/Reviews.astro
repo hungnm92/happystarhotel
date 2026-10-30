@@ -1,0 +1,159 @@
+---
+import { contact } from '../data/contact';
+import type { Locale } from '../i18n';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  locale: Locale;
+  t: Dict;
+}
+
+const { locale, t } = Astro.props;
+const r = t.reviews;
+// Điểm thành phần trên Agoda (tháng 10/2026)
+const scores = [
+  { key: 'service', value: 8.5 },
+  { key: 'cleanliness', value: 8.4 },
+  { key: 'value', value: 8.4 },
+  { key: 'location', value: 8.3 },
+  { key: 'facilities', value: 8.1 },
+] as const;
+const fmt = (n: number) => n.toLocaleString(locale, { minimumFractionDigits: 1 });
+---
+
+<section class="section reviews">
+  <div class="container grid">
+    <div class="head">
+      <h2>{r.title}</h2>
+      <p>{r.lead}</p>
+      <a class="btn btn-line" href={contact.agoda} target="_blank" rel="noopener" data-cta="agoda-reviews">{r.cta}</a>
+    </div>
+
+    <div class="score">
+      <p class="overall"><strong>{fmt(contact.rating.score)}</strong><span>/10</span></p>
+      <p class="verdict">{r.overall}</p>
+      <p class="count">{r.basedOn(contact.rating.count)}</p>
+    </div>
+
+    <ul class="bars">
+      {
+        scores.map((s) => (
+          <li>
+            <span class="label">{r.scores[s.key]}</span>
+            <span class="track"><span class="fill" style={`width:${s.value * 10}%`} /></span>
+            <span class="value">{fmt(s.value)}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    background: var(--foam);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1.2fr auto 1.3fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+  }
+
+  .head {
+    display: grid;
+    gap: 0.9rem;
+    justify-items: start;
+  }
+
+  .head p {
+    color: var(--muted);
+  }
+
+  .score {
+    display: grid;
+    justify-items: center;
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius);
+    background: var(--sea);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .overall {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .overall strong {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .overall span {
+    font-weight: 800;
+    opacity: 0.75;
+  }
+
+  .verdict {
+    font-weight: 900;
+    font-size: var(--step-1);
+  }
+
+  .count {
+    font-size: var(--step--1);
+    opacity: 0.85;
+  }
+
+  .bars {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .bars li {
+    display: grid;
+    grid-template-columns: minmax(7rem, 9rem) 1fr 2.5rem;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+  }
+
+  .track {
+    height: 10px;
+    border-radius: 999px;
+    background: var(--white);
+    overflow: hidden;
+  }
+
+  .fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--sun);
+  }
+
+  .value {
+    text-align: right;
+    color: var(--sea);
+  }
+
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: auto 1fr;
+    }
+    .head {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .score {
+      justify-self: start;
+    }
+  }
+</style>

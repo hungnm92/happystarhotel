@@ -1,0 +1,149 @@
+---
+import Icon from './Icon.astro';
+import { contact, links } from '../data/contact';
+import { places, formatDistance, type Locale } from '../i18n';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  locale: Locale;
+  t: Dict;
+}
+
+const { locale, t } = Astro.props;
+const l = t.location;
+// Thanh khoảng cách theo thang log để 300 m và 35 km cùng hiện được
+const maxLog = Math.log10(35000);
+const minLog = Math.log10(200);
+const pct = (m: number) => Math.round(((Math.log10(m) - minLog) / (maxLog - minLog)) * 92 + 8);
+---
+
+<section class="section" id="location">
+  <div class="container grid">
+    <div class="copy">
+      <div class="section-head">
+        <h2>{l.title}</h2>
+        <p>{l.lead}</p>
+      </div>
+
+      <ol class="places">
+        {
+          places.map((p) => (
+            <li style={`--d:${pct(p.meters)}%`}>
+              <span class="name">{l.places[p.key]}</span>
+              <span class="dist">{formatDistance(locale, p.meters)}</span>
+            </li>
+          ))
+        }
+      </ol>
+
+      <a class="btn btn-sea" href={contact.mapsLink} target="_blank" rel="noopener" data-cta="maps">
+        <Icon name="route" size={20} />
+        {l.directions}
+      </a>
+    </div>
+
+    <div class="map">
+      <iframe
+        title={l.mapTitle}
+        src={links.mapEmbed}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+      <p class="addr"><Icon name="pin" size={18} />{contact.address.full}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .copy {
+    display: grid;
+    justify-items: start;
+  }
+
+  .copy .section-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .places {
+    width: 100%;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  /* Mỗi dòng có một vệt nền dài theo khoảng cách */
+  .places li {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 10px;
+    isolation: isolate;
+  }
+
+  .places li::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--d);
+    border-radius: inherit;
+    background: var(--foam);
+    z-index: -1;
+  }
+
+  .places li:first-child::before {
+    background: #fde3c3;
+  }
+
+  .name {
+    font-weight: 700;
+  }
+
+  .dist {
+    font-weight: 900;
+    color: var(--sea);
+    white-space: nowrap;
+  }
+
+  .map {
+    position: sticky;
+    top: calc(var(--header-h) + 1rem);
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  iframe {
+    width: 100%;
+    aspect-ratio: 4 / 3.4;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--foam);
+  }
+
+  .addr {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .map {
+      position: static;
+    }
+  }
+</style>

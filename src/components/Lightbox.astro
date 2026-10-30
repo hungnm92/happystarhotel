@@ -1,0 +1,149 @@
+---
+import Icon from './Icon.astro';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  t: Dict;
+}
+
+const { t } = Astro.props;
+---
+
+<dialog class="lightbox" aria-label="Gallery">
+  <button class="close" type="button" aria-label={t.lightbox.close}><Icon name="close" size={26} /></button>
+  <button class="nav prev" type="button" aria-label={t.lightbox.prev}><Icon name="left" size={30} /></button>
+  <figure>
+    <img alt="" />
+    <figcaption></figcaption>
+  </figure>
+  <button class="nav next" type="button" aria-label={t.lightbox.next}><Icon name="right" size={30} /></button>
+</dialog>
+
+<script>
+  // Mọi phần tử có data-gallery là một bộ ảnh; nút con có data-index mở ảnh tương ứng.
+  type Item = { src: string; alt: string };
+  const dialog = document.querySelector<HTMLDialogElement>('dialog.lightbox')!;
+  const img = dialog.querySelector('img')!;
+  const caption = dialog.querySelector('figcaption')!;
+  let items: Item[] = [];
+  let index = 0;
+
+  const show = (i: number) => {
+    index = (i + items.length) % items.length;
+    img.src = items[index].src;
+    img.alt = items[index].alt;
+    caption.textContent = `${items[index].alt} · ${index + 1} / ${items.length}`;
+  };
+
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-index]');
+    const group = btn?.closest<HTMLElement>('[data-gallery]');
+    if (!btn || !group) return;
+    items = JSON.parse(group.dataset.gallery!);
+    show(Number(btn.dataset.index));
+    dialog.showModal();
+  });
+
+  dialog.querySelector('.close')!.addEventListener('click', () => dialog.close());
+  dialog.querySelector('.prev')!.addEventListener('click', () => show(index - 1));
+  dialog.querySelector('.next')!.addEventListener('click', () => show(index + 1));
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+
+  // Vuốt trái/phải trên điện thoại
+  let startX = 0;
+  dialog.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true });
+  dialog.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+  });
+</script>
+
+<style>
+  .lightbox {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(4 18 40 / 0.94);
+    color: var(--white);
+  }
+
+  .lightbox[open] {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  .lightbox::backdrop {
+    background: rgb(4 18 40 / 0.6);
+  }
+
+  figure {
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: calc(100dvh - 7rem);
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  figcaption {
+    font-size: var(--step--1);
+    opacity: 0.8;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin: 0.5rem;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.12);
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: rgb(255 255 255 / 0.24);
+  }
+
+  .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+    .lightbox[open] {
+      grid-template-columns: 1fr;
+    }
+    .nav {
+      position: absolute;
+      bottom: 1rem;
+    }
+    .prev {
+      left: 1rem;
+    }
+    .next {
+      right: 1rem;
+    }
+  }
+</style>

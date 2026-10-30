@@ -1,0 +1,198 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { asset } from '../lib/images';
+import { getDict, locales, localePath, type Locale } from '../i18n';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  locale: Locale;
+  t: Dict;
+}
+
+const { locale, t } = Astro.props;
+const navItems = [
+  { href: '#rooms', label: t.nav.rooms },
+  { href: '#amenities', label: t.nav.amenities },
+  { href: '#location', label: t.nav.location },
+  { href: '#contact', label: t.nav.contact },
+];
+---
+
+<header class="header">
+  <div class="container bar">
+    <a class="brand" href={localePath(locale)} aria-label="Happy Star Hotel Nha Trang">
+      <Image src={asset('brand/logo.webp')} alt="" width={56} height={56} loading="eager" />
+      <span class="brand-name">Happy Star <span>Hotel</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Menu">
+      <ul>
+        {navItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="tools">
+      <details class="lang">
+        <summary aria-label={t.nav.language}>
+          <Icon name="globe" size={18} />
+          <span>{locale.toUpperCase()}</span>
+        </summary>
+        <ul>
+          {
+            locales.map((l) => (
+              <li>
+                <a href={localePath(l)} hreflang={l} lang={l} aria-current={l === locale ? 'true' : undefined}>
+                  {getDict(l).langLabel}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+      <a class="btn btn-sun book" href="#contact" data-cta="header-book">{t.nav.book}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgb(255 255 255 / 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--sun-deep);
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .brand img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
+  .brand-name span {
+    color: var(--sea);
+  }
+
+  .nav {
+    margin-inline-start: auto;
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    border-radius: 999px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .nav a:hover {
+    background: var(--foam);
+  }
+
+  .tools {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .lang {
+    position: relative;
+  }
+
+  .lang summary {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: 44px;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    border: 2px solid var(--line);
+    font-weight: 800;
+    font-size: var(--step--1);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .lang summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .lang[open] summary {
+    border-color: var(--sea);
+  }
+
+  .lang ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    min-width: 11rem;
+    padding: 0.4rem;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 12px 30px -12px rgb(10 46 99 / 0.35);
+  }
+
+  .lang a {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border-radius: 8px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .lang a:hover {
+    background: var(--foam);
+  }
+
+  .lang a[aria-current] {
+    color: var(--sea);
+    background: var(--foam);
+  }
+
+  @media (max-width: 900px) {
+    .nav {
+      display: none;
+    }
+    .tools {
+      margin-inline-start: auto;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .brand-name {
+      display: none;
+    }
+    .book {
+      padding-inline: 1rem;
+    }
+  }
+</style>

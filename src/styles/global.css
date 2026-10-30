@@ -1,0 +1,198 @@
+@import '@fontsource-variable/nunito';
+
+:root {
+  /* Màu lấy từ logo: xanh biển, cam mặt trời, xanh lá dừa */
+  --ink: #0a2e63;
+  --sea: #0d4da1;
+  --sea-soft: #3d73bf;
+  --sun: #f7931e;
+  --sun-deep: #e27d06;
+  --foam: #eaf3fb;
+  --lilac: #f6f1f9;
+  --palm: #2b8a3e;
+  --line: #d6e2ef;
+  --muted: #4b5f7d;
+  --white: #ffffff;
+
+  --font: 'Nunito Variable', 'Nunito', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', system-ui,
+    -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Thang chữ 1.25 */
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: clamp(1.45rem, 1.2rem + 1vw, 1.75rem);
+  --step-3: clamp(1.8rem, 1.4rem + 1.8vw, 2.4rem);
+  --step-4: clamp(2.2rem, 1.5rem + 3.2vw, 3.6rem);
+
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --max: 1200px;
+  --radius: 22px;
+  --radius-sm: 12px;
+  --header-h: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+:lang(ko) body,
+body:lang(ko) {
+  word-break: keep-all;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.15;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-1);
+  font-weight: 800;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--sea);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.section-head {
+  max-width: 44rem;
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.section-head p {
+  color: var(--muted);
+}
+
+/* Nút */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.1;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.btn-sun {
+  background: var(--sun);
+  color: var(--ink);
+}
+
+.btn-sun:hover {
+  background: var(--sun-deep);
+}
+
+.btn-sea {
+  background: var(--sea);
+  color: var(--white);
+}
+
+.btn-sea:hover {
+  background: var(--ink);
+}
+
+.btn-line {
+  border-color: var(--line);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.btn-line:hover {
+  border-color: var(--sea);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,227 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Icon from './Icon.astro';
+import { roomImage } from '../lib/images';
+import { links } from '../data/contact';
+import type { Room } from '../data/rooms';
+import { formatPrice, type Locale } from '../i18n';
+import type { Dict } from '../i18n/vi';
+
+interface Props {
+  room: Room;
+  locale: Locale;
+  t: Dict;
+}
+
+const { room, locale, t } = Astro.props;
+const r = t.rooms;
+const [main, ...rest] = room.images;
+const thumbs = rest.slice(0, 3);
+
+const full = await Promise.all(
+  room.images.map((p) => getImage({ src: roomImage(p), width: 1600, format: 'webp' })),
+);
+const gallery = JSON.stringify(full.map((img) => ({ src: img.src, alt: room.name })));
+
+const bedText = room.beds
+  .map((b) => r.bed(b.width.toLocaleString(locale, { minimumFractionDigits: 1 }), b.count))
+  .join(' + ');
+const guests = [r.adults(room.adults), room.children ? r.children(room.children) : null].filter(Boolean).join(' + ');
+
+const zalo = { href: links.zalo, label: r.askZalo, icon: 'zalo' as const, key: 'zalo' };
+const whatsapp = {
+  href: links.whatsapp(r.whatsappText(room.name)),
+  label: r.askWhatsApp,
+  icon: 'whatsapp' as const,
+  key: 'whatsapp',
+};
+const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsapp, zalo];
+---
+
+<article class="card" id={room.slug} data-gallery={gallery}>
+  <div class="media">
+    <button class="main" type="button" data-index="0" aria-label={`${room.name} – ${r.viewPhotos(room.images.length)}`}>
+      <Image src={roomImage(main)} alt={room.name} widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 560px" />
+      <span class="count"><Icon name="images" size={16} />{r.viewPhotos(room.images.length)}</span>
+    </button>
+    <div class="thumbs">
+      {
+        thumbs.map((p, i) => (
+          <button type="button" data-index={i + 1} aria-label={`${room.name} – ${i + 2}`}>
+            <Image src={roomImage(p)} alt="" width={240} />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="body">
+    <h3>{room.name}</h3>
+    <ul class="specs">
+      <li><Icon name="size" size={18} /><span>{room.size} m²</span></li>
+      <li><Icon name="bed" size={18} /><span>{bedText}</span></li>
+      <li><Icon name="users" size={18} /><span>{guests}</span></li>
+      <li><Icon name={room.tier === 'balcony' || room.light === 'smallBalcony' ? 'balcony' : 'window'} size={18} /><span>{r.light[room.light]}</span></li>
+      <li><Icon name={room.bath === 'shower' ? 'shower' : 'bath'} size={18} /><span>{r.bath[room.bath]}</span></li>
+    </ul>
+
+    <div class="price">
+      <p class="from">
+        <span>{r.from}</span>
+        <strong>{formatPrice(locale, room.priceWeekday)}</strong>
+        <span>{r.perNight}</span>
+      </p>
+      <p class="weekend">{r.weekend}: {formatPrice(locale, room.priceWeekend)}</p>
+    </div>
+
+    <div class="ask">
+      <a class="btn btn-sea" href={first.href} target="_blank" rel="noopener" data-cta={`room-${first.key}`} data-room={room.slug}>
+        <Icon name={first.icon} size={20} />{first.label}
+      </a>
+      <a class="btn btn-line" href={second.href} target="_blank" rel="noopener" data-cta={`room-${second.key}`} data-room={room.slug}>
+        <Icon name={second.icon} size={20} />{second.label}
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid #e7ddf0;
+  }
+
+  .media {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  button {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .main {
+    aspect-ratio: 3 / 2;
+  }
+
+  .count {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgb(10 46 99 / 0.82);
+    color: var(--white);
+    font-size: var(--step--1);
+    font-weight: 700;
+  }
+
+  .thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .thumbs button {
+    aspect-ratio: 16 / 10;
+  }
+
+  .main:hover img,
+  .thumbs button:hover img {
+    filter: brightness(1.06);
+  }
+
+  .body {
+    display: grid;
+    gap: 1.1rem;
+    align-content: start;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  h3 {
+    font-size: var(--step-2);
+  }
+
+  .specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .specs li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .specs :global(svg) {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--sea-soft);
+  }
+
+  .price {
+    padding-top: 1rem;
+    border-top: 1px dashed var(--line);
+  }
+
+  .from {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .from strong {
+    font-size: var(--step-2);
+    font-weight: 900;
+    color: var(--sea);
+  }
+
+  .weekend {
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+
+  .ask {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: auto;
+  }
+
+  .ask .btn {
+    flex: 1 1 auto;
+  }
+
+  @media (max-width: 420px) {
+    .specs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
