@@ -40,7 +40,7 @@ const ko: Dict = {
   },
   rooms: {
     title: '객실 선택',
-    lead: '표시된 가격은 평일(일–목) 요금입니다. 주말과 공휴일 요금은 다르니 메시지로 문의하시면 가장 좋은 가격을 안내해 드립니다.',
+    lead: '요금은 날짜와 시즌에 따라 달라집니다. 체크인 날짜와 인원을 보내주시면 원하시는 객실의 가장 좋은 가격을 안내해 드립니다.',
     tiers: {
       window: '스탠다드 & 슈페리어 — 창문 객실',
       balcony: '디럭스 — 넓은 발코니 객실',
@@ -62,11 +62,8 @@ const ko: Dict = {
       smallTub: '작은 욕조',
       largeTub: '큰 욕조',
     },
-    from: '1박',
-    perNight: '부터',
-    weekend: '금·토요일',
-    askZalo: 'Zalo로 문의',
-    askWhatsApp: 'WhatsApp으로 문의',
+    askZalo: 'Zalo로 요금 문의',
+    askWhatsApp: 'WhatsApp으로 요금 문의',
     viewPhotos: (n: number) => `사진 ${n}장 보기`,
     whatsappText: (room: string) =>
       `안녕하세요 해피스타 호텔, ${room} 객실 문의드립니다. 체크인 날짜: …, 인원: …`,

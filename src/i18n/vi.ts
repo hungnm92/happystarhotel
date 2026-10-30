@@ -38,7 +38,7 @@ const vi = {
   },
   rooms: {
     title: 'Chọn phòng',
-    lead: 'Giá dưới đây là giá ngày thường (Chủ nhật – Thứ Năm). Cuối tuần và dịp lễ giá thay đổi, nhắn cho chúng tôi để có giá tốt nhất.',
+    lead: 'Giá thay đổi theo ngày và mùa. Nhắn ngày nhận phòng và số khách, lễ tân sẽ báo giá tốt nhất cho hạng phòng bạn chọn.',
     tiers: {
       window: 'Standard & Superior — phòng có cửa sổ',
       balcony: 'Deluxe — phòng có ban công lớn',
@@ -61,11 +61,8 @@ const vi = {
       smallTub: 'Bồn tắm nhỏ',
       largeTub: 'Bồn tắm lớn',
     },
-    from: 'Từ',
-    perNight: '/ đêm',
-    weekend: 'Thứ Sáu, Thứ Bảy',
-    askZalo: 'Hỏi phòng qua Zalo',
-    askWhatsApp: 'WhatsApp',
+    askZalo: 'Hỏi giá qua Zalo',
+    askWhatsApp: 'Hỏi giá qua WhatsApp',
     viewPhotos: (n: number) => `Xem ${n} ảnh`,
     whatsappText: (room: string) =>
       `Xin chào Happy Star Hotel, tôi muốn hỏi giá phòng ${room}. Ngày nhận phòng: …, số khách: …`,

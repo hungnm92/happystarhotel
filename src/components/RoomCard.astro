@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 import { roomImage } from '../lib/images';
 import { links } from '../data/contact';
 import type { Room } from '../data/rooms';
-import { formatPrice, type Locale } from '../i18n';
+import type { Locale } from '../i18n';
 import type { Dict } from '../i18n/vi';
 
 interface Props {
@@ -65,14 +65,6 @@ const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsa
       <li><Icon name={room.bath === 'shower' ? 'shower' : 'bath'} size={18} /><span>{r.bath[room.bath]}</span></li>
     </ul>
 
-    <div class="price">
-      <p class="from">
-        <span>{r.from}</span>
-        <strong>{formatPrice(locale, room.priceWeekday)}</strong>
-        <span>{r.perNight}</span>
-      </p>
-      <p class="weekend">{r.weekend}: {formatPrice(locale, room.priceWeekend)}</p>
-    </div>
 
     <div class="ask">
       <a class="btn btn-sea" href={first.href} target="_blank" rel="noopener" data-cta={`room-${first.key}`} data-room={room.slug}>
@@ -181,31 +173,6 @@ const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsa
     flex: none;
     margin-top: 0.15rem;
     color: var(--sea-soft);
-  }
-
-  .price {
-    padding-top: 1rem;
-    border-top: 1px dashed var(--line);
-  }
-
-  .from {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    color: var(--muted);
-    font-weight: 700;
-  }
-
-  .from strong {
-    font-size: var(--step-2);
-    font-weight: 900;
-    color: var(--sea);
-  }
-
-  .weekend {
-    font-size: var(--step--1);
-    color: var(--muted);
   }
 
   .ask {

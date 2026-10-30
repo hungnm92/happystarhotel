@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { contact } from '../data/contact';
-import { minPrice, maxPrice, totalRooms } from '../data/rooms';
+import { minPrice, totalRooms } from '../data/rooms';
 import { locales, localePath, type Locale } from '../i18n';
 import type { Dict } from '../i18n/vi';
 
@@ -37,7 +37,7 @@ const jsonLd = {
   hasMap: contact.mapsLink,
   starRating: { '@type': 'Rating', ratingValue: 3 },
   numberOfRooms: totalRooms,
-  priceRange: `${minPrice.toLocaleString('vi-VN')}₫ – ${maxPrice.toLocaleString('vi-VN')}₫`,
+  priceRange: `${minPrice.toLocaleString('vi-VN')}₫+`,
   currenciesAccepted: 'VND',
   checkinTime: contact.checkIn,
   checkoutTime: contact.checkOut,

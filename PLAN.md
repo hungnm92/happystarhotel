@@ -44,7 +44,7 @@ Nguồn: `Happy_Star_Hotel_view.pdf`, brochure, banner Facebook, bảng giá t�
 | Deluxe Family (Balcony) | 501·601·701 (3) | 2 × 1,6m | 4 NL + 2 TE | 32 | Ban công lớn | 850.000 | 1.100.000 | Deluxe Fam (9 ảnh) |
 | *Phòng 202 (ngoại lệ)* | 202 (1) | 1,8m + 1,2m | 3 NL + 1 TE | ? | Ban công lớn | 800.000 | 950.000 | Folder ghi thuộc Deluxe Twins |
 
-Tổng: 30 phòng. Trên web hiển thị **7 thẻ phòng**, mỗi thẻ ghi **"Giá từ …đ/đêm"** theo giá ngày thường (Standard Double từ 380.000đ). Phòng 202 có ban công lớn → gộp vào nhóm Deluxe (thẻ Deluxe Triple), không làm thẻ riêng.
+Tổng: 30 phòng. Trên web hiển thị **7 thẻ phòng**, thẻ **không ghi giá** (chủ KS chốt 30/10/2026: chỉ ghi "Giá từ 380.000đ/đêm" ở đầu trang, giá từng hạng khách nhắn hỏi). Bảng giá trên chỉ để tham khảo nội bộ. Phòng 202 có ban công lớn → gộp vào nhóm Deluxe (thẻ Deluxe Triple), không làm thẻ riêng.
 
 **Điểm vênh giữa các nguồn (cần chủ KS chốt):**
 - **Sức chứa:** brochure ghi Superior Twin / Deluxe Twin "2 NL + 2 TE", Deluxe Triple / Superior Triple "3 NL + 2 TE"; bảng giá ghi 2 NL / 3 NL + 1 TE.
@@ -75,7 +75,7 @@ Tổng: 30 phòng. Trên web hiển thị **7 thẻ phòng**, mỗi thẻ ghi **
 | 0 | **Header (sticky)** | Logo · menu: Phòng / Tiện nghi / Vị trí / Liên hệ · chuyển ngữ VI/EN | Nút "Đặt phòng" (cam) |
 | 1 | **Hero** | Ảnh mặt tiền KS + biển, slogan "Trải nghiệm kỳ nghỉ thoải mái tại Nha Trang", dòng phụ "Cách biển Trần Phú 300 m · Giá chỉ từ 380.000đ" | Chat Zalo · Gọi ngay |
 | 2 | **Giới thiệu** | "Khách sạn ấm áp giữa lòng Nha Trang" + icon USP + số liệu (7 hạng phòng · 30 phòng · 300 m tới biển · 8.0/10 Agoda) | — |
-| 3 | **Hạng phòng** | 7 thẻ: ảnh chính + ảnh phụ, tên VI/EN, m², giường, sức chứa, đặc điểm, **"Giá từ …đ/đêm"** (nếu chủ KS đồng ý). Bộ lọc nhanh: Cặp đôi / Gia đình / Nhóm. Bấm ảnh → lightbox | "Hỏi phòng này" → Zalo / WhatsApp (điền sẵn tên phòng) |
+| 3 | **Hạng phòng** | 7 thẻ: ảnh chính + ảnh phụ, tên VI/EN, m², giường, sức chứa, đặc điểm, không ghi giá. Bộ lọc nhanh: Cặp đôi / Gia đình / Nhóm. Bấm ảnh → lightbox | "Hỏi phòng này" → Zalo / WhatsApp (điền sẵn tên phòng) |
 | 4 | **Tiện nghi & dịch vụ** | Icon tiện nghi phòng + dịch vụ (bữa sáng, giặt ủi, sân thượng, bếp chung, chỗ đậu xe máy, thang máy, lễ tân 24h) + giờ nhận/trả phòng + "Trẻ dưới 6 tuổi miễn phí" | — |
 | 5 | **Khách nói gì** | Điểm Agoda 8.0 + điểm từng tiêu chí, link "Xem đánh giá trên Agoda". Không chép nguyên văn đánh giá của Agoda (bản quyền) — nếu muốn trích, xin khách cho phép hoặc lấy từ Google / Facebook của chính KS | Link Agoda / Google |
 | 6 | **Thư viện ảnh** | Masonry: mặt tiền, sảnh, hành lang, phòng tắm, ban công, view | — |
@@ -97,7 +97,7 @@ Tổng: 30 phòng. Trên web hiển thị **7 thẻ phòng**, mỗi thẻ ghi **
 | Chỉ đường | `https://maps.app.goo.gl/5aseMEwJnvL1VMHV7` |
 | Bản đồ nhúng | iframe "Embed a map" lấy từ Google Maps (link rút gọn không nhúng trực tiếp được) |
 
-Tất cả link ngoài mở tab mới, `rel="noopener"`. Mọi số điện thoại / URL nằm trong **một file** `src/data/contact.ts`; giá + thông số phòng trong `src/data/rooms.ts` → đổi giá chỉ cần sửa một chỗ rồi deploy lại.
+Tất cả link ngoài mở tab mới, `rel="noopener"`. Mọi số điện thoại / URL nằm trong **một file** `src/data/contact.ts`; thông số phòng và giá "từ" (`minPrice`) trong `src/data/rooms.ts`.
 
 ---
 
@@ -122,7 +122,7 @@ HappyStar/
 │  │  └─ rooms/<slug>/*.jpg        # đổi tên ảnh: standard-double-01.jpg …
 │  ├─ components/                  # Header, Hero, RoomCard, Amenities, Reviews, MapSection, ContactBar…
 │  ├─ data/contact.ts              # SĐT, email, link CTA
-│  ├─ data/rooms.ts                # 7 hạng phòng (VI + EN, giá, ảnh)
+│  ├─ data/rooms.ts                # 7 hạng phòng (thông số, ảnh, minPrice)
 │  ├─ i18n/{vi,en}.json
 │  └─ pages/index.astro, en/index.astro
 ├─ public/  favicon, og-image.jpg, robots.txt

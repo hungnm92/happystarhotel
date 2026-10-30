@@ -18,12 +18,12 @@ Cần Node 22 (xem `.nvmrc`).
 | Muốn sửa | File |
 |---|---|
 | Số điện thoại, email, Facebook, link Google Maps, giờ nhận/trả phòng, điểm Agoda | `src/data/contact.ts` |
-| Giá phòng, diện tích, giường, sức chứa, số phòng, ảnh của từng hạng | `src/data/rooms.ts` |
+| Giá "từ" ở đầu trang (`minPrice`), diện tích, giường, sức chứa, số phòng, ảnh của từng hạng | `src/data/rooms.ts` |
 | Ảnh trong phần "Hình ảnh khách sạn" | `galleryImages` cuối file `src/data/rooms.ts` |
 | Chữ trên trang (từng ngôn ngữ) | `src/i18n/vi.ts`, `en.ts`, `ko.ts`, `ru.ts` |
 | Màu, cỡ chữ chung | `src/styles/global.css` |
 
-Giá "Từ …/đêm" lấy từ `priceWeekday`, dòng giá cuối tuần lấy từ `priceWeekend`.
+Trang chỉ ghi một mức "Giá từ …/đêm" ở đầu trang, lấy từ `minPrice` trong `src/data/rooms.ts`. Thẻ phòng không ghi giá, khách bấm "Hỏi giá" để nhắn.
 
 ### Thêm / đổi ảnh
 

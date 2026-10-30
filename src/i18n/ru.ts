@@ -48,7 +48,7 @@ const ru: Dict = {
   },
   rooms: {
     title: 'Выберите номер',
-    lead: 'Указаны цены будних дней (с воскресенья по четверг). В выходные и праздники цены другие — напишите нам, и мы предложим лучшую цену.',
+    lead: 'Цены зависят от даты и сезона. Напишите даты и количество гостей — мы назовём лучшую цену на выбранный номер.',
     tiers: {
       window: 'Standard и Superior — номера с окном',
       balcony: 'Deluxe — номера с большим балконом',
@@ -71,11 +71,8 @@ const ru: Dict = {
       smallTub: 'Небольшая ванна',
       largeTub: 'Большая ванна',
     },
-    from: 'От',
-    perNight: '/ ночь',
-    weekend: 'Пятница и суббота',
-    askZalo: 'Спросить в Zalo',
-    askWhatsApp: 'Спросить в WhatsApp',
+    askZalo: 'Узнать цену в Zalo',
+    askWhatsApp: 'Узнать цену в WhatsApp',
     viewPhotos: (n: number) => `${n} фото`,
     whatsappText: (room: string) =>
       `Здравствуйте, Happy Star Hotel! Хочу узнать о номере ${room}. Дата заезда: …, гостей: …`,

@@ -1,4 +1,4 @@
-// Dữ liệu hạng phòng. Giá theo "Bảng giá phòng tạm tính" (VND / đêm).
+// Dữ liệu hạng phòng. Trang không niêm yết giá từng hạng, chỉ ghi "Giá từ" minPrice.
 // Ảnh: đường dẫn tương đối trong src/assets/rooms/, ảnh đầu tiên là ảnh chính.
 
 export type Bed = { width: 1.2 | 1.6 | 1.8; count: number };
@@ -15,8 +15,6 @@ export interface Room {
   children: number;
   light: Light;
   bath: Bath;
-  priceWeekday: number;
-  priceWeekend: number;
   roomNumbers: string[];
   images: string[];
 }
@@ -32,8 +30,6 @@ export const rooms: Room[] = [
     children: 0,
     light: 'smallWindow',
     bath: 'shower',
-    priceWeekday: 380000,
-    priceWeekend: 450000,
     roomNumbers: ['204', '304', '404', '504', '604', '704'],
     images: [
       'standard-double/standard-double-03.jpg',
@@ -53,8 +49,6 @@ export const rooms: Room[] = [
     children: 1,
     light: 'largeWindow',
     bath: 'shower',
-    priceWeekday: 480000,
-    priceWeekend: 580000,
     roomNumbers: ['205', '305', '405', '505', '605', '705'],
     images: [
       'superior-double/superior-double-01.jpg',
@@ -74,8 +68,6 @@ export const rooms: Room[] = [
     children: 0,
     light: 'smallBalcony',
     bath: 'smallTub',
-    priceWeekday: 550000,
-    priceWeekend: 650000,
     roomNumbers: ['506', '606', '706'],
     images: [
       'superior/superior-twin-main.jpg',
@@ -98,8 +90,6 @@ export const rooms: Room[] = [
     children: 1,
     light: 'smallBalcony',
     bath: 'smallTub',
-    priceWeekday: 680000,
-    priceWeekend: 850000,
     roomNumbers: ['206', '306', '406'],
     images: [
       'superior/superior-triple-main.jpg',
@@ -119,8 +109,6 @@ export const rooms: Room[] = [
     children: 0,
     light: 'largeBalcony',
     bath: 'largeTub',
-    priceWeekday: 600000,
-    priceWeekend: 750000,
     roomNumbers: ['302', '402', '502', '602', '702'],
     images: [
       'deluxe-twin/deluxe-twin-01.jpg',
@@ -144,8 +132,6 @@ export const rooms: Room[] = [
     children: 1,
     light: 'largeBalcony',
     bath: 'smallTub',
-    priceWeekday: 750000,
-    priceWeekend: 900000,
     // 202 (giường 1,8m + 1,2m, ban công lớn) được xếp chung nhóm này
     roomNumbers: ['201', '202', '301', '401'],
     images: [
@@ -166,8 +152,6 @@ export const rooms: Room[] = [
     children: 2,
     light: 'largeBalcony',
     bath: 'smallTub',
-    priceWeekday: 850000,
-    priceWeekend: 1100000,
     roomNumbers: ['501', '601', '701'],
     images: [
       'deluxe-family/deluxe-family-01.jpg',
@@ -179,8 +163,8 @@ export const rooms: Room[] = [
   },
 ];
 
-export const minPrice = Math.min(...rooms.map((r) => r.priceWeekday));
-export const maxPrice = Math.max(...rooms.map((r) => r.priceWeekend));
+// Giá thấp nhất (Standard Double, ngày thường), VND / đêm
+export const minPrice = 380000;
 export const totalRooms = rooms.reduce((n, r) => n + r.roomNumbers.length, 0);
 
 // Ảnh cho thư viện ảnh chung

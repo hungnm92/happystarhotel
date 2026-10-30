@@ -40,7 +40,7 @@ const en: Dict = {
   },
   rooms: {
     title: 'Choose your room',
-    lead: 'Prices shown are weekday rates (Sunday to Thursday). Weekend and holiday rates differ, so message us for the best price.',
+    lead: 'Rates change with the date and season. Send us your dates and number of guests and we will quote the best price for the room you like.',
     tiers: {
       window: 'Standard & Superior — rooms with windows',
       balcony: 'Deluxe — rooms with a large balcony',
@@ -63,11 +63,8 @@ const en: Dict = {
       smallTub: 'Small bathtub',
       largeTub: 'Large bathtub',
     },
-    from: 'From',
-    perNight: '/ night',
-    weekend: 'Friday & Saturday',
-    askZalo: 'Ask on Zalo',
-    askWhatsApp: 'Ask on WhatsApp',
+    askZalo: 'Get a price on Zalo',
+    askWhatsApp: 'Get a price on WhatsApp',
     viewPhotos: (n: number) => `View ${n} photos`,
     whatsappText: (room: string) =>
       `Hello Happy Star Hotel, I'd like to ask about the ${room} room. Check-in date: …, guests: …`,
