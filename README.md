@@ -23,7 +23,7 @@ Cần Node 22 (xem `.nvmrc`).
 | Chữ trên trang (từng ngôn ngữ) | `src/i18n/vi.ts`, `en.ts`, `ko.ts`, `ru.ts` |
 | Màu, cỡ chữ chung | `src/styles/global.css` |
 
-Trang chỉ ghi một mức "Giá từ …/đêm" ở đầu trang, lấy từ `minPrice` trong `src/data/rooms.ts`. Thẻ phòng không ghi giá, khách bấm "Hỏi giá" để nhắn.
+Trang chỉ ghi một mức "Giá từ …/đêm" ở đầu trang, lấy từ `minPrice` trong `src/data/rooms.ts`. Thẻ phòng không ghi giá, khách bấm "Đặt phòng qua Zalo / WhatsApp" để nhắn.
 
 ### Thêm / đổi ảnh
 

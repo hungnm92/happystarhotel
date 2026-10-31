@@ -62,11 +62,11 @@ const ko: Dict = {
       smallTub: '작은 욕조',
       largeTub: '큰 욕조',
     },
-    askZalo: 'Zalo로 요금 문의',
-    askWhatsApp: 'WhatsApp으로 요금 문의',
+    askZalo: 'Zalo로 예약하기',
+    askWhatsApp: 'WhatsApp으로 예약하기',
     viewPhotos: (n: number) => `사진 ${n}장 보기`,
     whatsappText: (room: string) =>
-      `안녕하세요 해피스타 호텔, ${room} 객실 문의드립니다. 체크인 날짜: …, 인원: …`,
+      `안녕하세요 해피스타 호텔, ${room} 객실을 예약하고 싶습니다. 체크인 날짜: …, 인원: …`,
   },
   amenities: {
     title: '편의시설 및 서비스',

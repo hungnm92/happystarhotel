@@ -63,11 +63,11 @@ const en: Dict = {
       smallTub: 'Small bathtub',
       largeTub: 'Large bathtub',
     },
-    askZalo: 'Get a price on Zalo',
-    askWhatsApp: 'Get a price on WhatsApp',
+    askZalo: 'Book on Zalo',
+    askWhatsApp: 'Book on WhatsApp',
     viewPhotos: (n: number) => `View ${n} photos`,
     whatsappText: (room: string) =>
-      `Hello Happy Star Hotel, I'd like to ask about the ${room} room. Check-in date: …, guests: …`,
+      `Hello Happy Star Hotel, I'd like to book the ${room} room. Check-in date: …, guests: …`,
   },
   amenities: {
     title: 'Amenities and services',

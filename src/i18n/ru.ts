@@ -71,11 +71,11 @@ const ru: Dict = {
       smallTub: 'Небольшая ванна',
       largeTub: 'Большая ванна',
     },
-    askZalo: 'Узнать цену в Zalo',
-    askWhatsApp: 'Узнать цену в WhatsApp',
+    askZalo: 'Забронировать в Zalo',
+    askWhatsApp: 'Забронировать в WhatsApp',
     viewPhotos: (n: number) => `${n} фото`,
     whatsappText: (room: string) =>
-      `Здравствуйте, Happy Star Hotel! Хочу узнать о номере ${room}. Дата заезда: …, гостей: …`,
+      `Здравствуйте, Happy Star Hotel! Хочу забронировать номер ${room}. Дата заезда: …, гостей: …`,
   },
   amenities: {
     title: 'Удобства и услуги',

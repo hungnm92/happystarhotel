@@ -61,11 +61,11 @@ const vi = {
       smallTub: 'Bồn tắm nhỏ',
       largeTub: 'Bồn tắm lớn',
     },
-    askZalo: 'Hỏi giá qua Zalo',
-    askWhatsApp: 'Hỏi giá qua WhatsApp',
+    askZalo: 'Đặt phòng qua Zalo',
+    askWhatsApp: 'Đặt phòng qua WhatsApp',
     viewPhotos: (n: number) => `Xem ${n} ảnh`,
     whatsappText: (room: string) =>
-      `Xin chào Happy Star Hotel, tôi muốn hỏi giá phòng ${room}. Ngày nhận phòng: …, số khách: …`,
+      `Xin chào Happy Star Hotel, tôi muốn đặt phòng ${room}. Ngày nhận phòng: …, số khách: …`,
   },
   amenities: {
     title: 'Tiện nghi và dịch vụ',
