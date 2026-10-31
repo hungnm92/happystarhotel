@@ -39,7 +39,7 @@ const en: Dict = {
     lobbyAlt: 'Happy Star Hotel reception and lobby',
   },
   rooms: {
-    title: 'Choose your room',
+    title: 'Rooms for couples, families and groups',
     lead: 'Rates change with the date and season. Send us your dates and number of guests and we will quote the best price for the room you like.',
     tiers: {
       window: 'Standard & Superior — rooms with windows',
@@ -70,7 +70,7 @@ const en: Dict = {
       `Hello Happy Star Hotel, I'd like to ask about the ${room} room. Check-in date: …, guests: …`,
   },
   amenities: {
-    title: 'What you get',
+    title: 'Amenities and services',
     inRoomTitle: 'In every room',
     inRoom: [
       'Free Wi-Fi',
@@ -98,7 +98,7 @@ const en: Dict = {
     groups: 'Booking 5 rooms or more? Ask us for a group rate',
   },
   reviews: {
-    title: 'What guests say',
+    title: 'Guest reviews on Agoda',
     lead: 'Average scores from verified guests on Agoda.',
     overall: 'Excellent',
     basedOn: (n: number) => `${n} verified reviews`,
@@ -112,11 +112,12 @@ const en: Dict = {
     cta: 'Read the reviews on Agoda',
   },
   gallery: {
-    title: 'Around the hotel',
+    title: 'Hotel photos',
     open: 'Enlarge photo',
+    corridorAlt: 'Hallway at Happy Star Hotel',
   },
   location: {
-    title: 'Close to everything you came for',
+    title: 'Location: near Tran Phu Beach in central Nha Trang',
     lead: '132/40 Hung Vuong is down a lane, so nights are quiet. If you need directions when you reach the lane, call the front desk.',
     places: {
       beach: 'Tran Phu beach',

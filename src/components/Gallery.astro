@@ -1,7 +1,8 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import { asset } from '../lib/images';
-import { galleryImages } from '../data/rooms';
+import { contact } from '../data/contact';
+import { galleryImages, rooms } from '../data/rooms';
 import type { Dict } from '../i18n/vi';
 
 interface Props {
@@ -9,10 +10,18 @@ interface Props {
 }
 
 const { t } = Astro.props;
+// Ảnh phòng lấy tên hạng phòng làm alt, ảnh chung lấy mô tả trong i18n
+const altFor = (p: string) => {
+  if (p === 'hotel/lobby.jpg') return t.intro.lobbyAlt;
+  if (p === 'hotel/corridor.jpg') return t.gallery.corridorAlt;
+  const path = p.replace(/^rooms\//, '');
+  const room = rooms.find((r) => r.images.includes(path)) ?? rooms.find((r) => path.startsWith(`${r.slug}/`));
+  return room ? `${room.name} – ${contact.name}` : contact.name;
+};
 const full = await Promise.all(
   galleryImages.map((p) => getImage({ src: asset(p), width: 1600, format: 'webp' })),
 );
-const gallery = JSON.stringify(full.map((img) => ({ src: img.src, alt: 'Happy Star Hotel' })));
+const gallery = JSON.stringify(full.map((img, i) => ({ src: img.src, alt: altFor(galleryImages[i]) })));
 ---
 
 <section class="section" aria-labelledby="gallery-title">
@@ -24,7 +33,7 @@ const gallery = JSON.stringify(full.map((img) => ({ src: img.src, alt: 'Happy St
       {
         galleryImages.map((p, i) => (
           <button type="button" data-index={i} aria-label={`${t.gallery.open} ${i + 1}`}>
-            <Image src={asset(p)} alt="" widths={[400, 700]} sizes="(max-width: 700px) 50vw, 25vw" />
+            <Image src={asset(p)} alt={altFor(p)} widths={[400, 700]} sizes="(max-width: 700px) 50vw, 25vw" />
           </button>
         ))
       }

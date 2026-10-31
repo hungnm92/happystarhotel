@@ -12,6 +12,13 @@
   status = 301
   force = true
 
+# Địa chỉ tạm của Netlify -> tên miền chính (tránh trùng nội dung trên Google)
+[[redirects]]
+  from = "https://happystarhotel.netlify.app/*"
+  to = "https://happystarhotelnhatrang.com/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/_astro/*"
   [headers.values]

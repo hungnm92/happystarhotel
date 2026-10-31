@@ -39,7 +39,7 @@ const ko: Dict = {
     lobbyAlt: '해피스타 호텔 로비와 프런트',
   },
   rooms: {
-    title: '객실 선택',
+    title: '커플, 가족, 단체를 위한 7가지 객실',
     lead: '요금은 날짜와 시즌에 따라 달라집니다. 체크인 날짜와 인원을 보내주시면 원하시는 객실의 가장 좋은 가격을 안내해 드립니다.',
     tiers: {
       window: '스탠다드 & 슈페리어 — 창문 객실',
@@ -69,7 +69,7 @@ const ko: Dict = {
       `안녕하세요 해피스타 호텔, ${room} 객실 문의드립니다. 체크인 날짜: …, 인원: …`,
   },
   amenities: {
-    title: '이용 가능한 시설',
+    title: '편의시설 및 서비스',
     inRoomTitle: '객실 내',
     inRoom: [
       '무료 Wi-Fi',
@@ -97,7 +97,7 @@ const ko: Dict = {
     groups: '5객실 이상 예약 시 단체 요금 문의',
   },
   reviews: {
-    title: '투숙객 평가',
+    title: '아고다 투숙객 평가',
     lead: '아고다에서 실제 투숙객이 남긴 평균 점수입니다.',
     overall: '매우 좋음',
     basedOn: (n: number) => `인증된 리뷰 ${n}개`,
@@ -111,11 +111,12 @@ const ko: Dict = {
     cta: '아고다에서 리뷰 보기',
   },
   gallery: {
-    title: '호텔 둘러보기',
+    title: '호텔 사진',
     open: '사진 크게 보기',
+    corridorAlt: '해피스타 호텔 복도',
   },
   location: {
-    title: '가고 싶은 곳 모두 가까이',
+    title: '위치: 나트랑 중심, 쩐푸 해변 근처',
     lead: '132/40 Hùng Vương은 골목 안에 있어 밤에 조용합니다. 골목 입구에서 길을 찾기 어려우면 프런트로 전화 주세요.',
     places: {
       beach: '쩐푸 해변',

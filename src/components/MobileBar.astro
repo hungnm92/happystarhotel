@@ -22,7 +22,7 @@ const messaging = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsapp, za
   <a href={links.tel} data-cta="bar-call"><Icon name="phone" size={20} />{t.mobileBar.call}</a>
   {
     messaging.map((m, i) => (
-      <a class:list={{ primary: i === 0 }} href={m.href} target="_blank" rel="noopener" data-cta={`bar-${m.key}`}>
+      <a class:list={{ primary: i === 0 }} href={m.href} target="_blank" rel="nofollow noopener" data-cta={`bar-${m.key}`}>
         <Icon name={m.icon} size={22} />
         {m.label}
       </a>

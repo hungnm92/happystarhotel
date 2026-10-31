@@ -27,7 +27,7 @@ const list = channels(t);
               class:list={['channel', { primary: i === 0 }]}
               href={c.href}
               target={c.external ? '_blank' : undefined}
-              rel={c.external ? 'noopener' : undefined}
+              rel={c.external ? 'nofollow noopener' : undefined}
               data-cta={`contact-${c.key}`}
             >
               <Icon name={c.icon} size={28} />

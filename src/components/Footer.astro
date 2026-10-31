@@ -25,7 +25,7 @@ const year = new Date().getFullYear();
       {locales.map((l) => <li><a href={localePath(l)} hreflang={l} lang={l}>{getDict(l).langLabel}</a></li>)}
     </ul>
 
-    <a class="fb" href={contact.facebook} target="_blank" rel="noopener" data-cta="footer-facebook">
+    <a class="fb" href={contact.facebook} target="_blank" rel="nofollow noopener" data-cta="footer-facebook">
       <Icon name="facebook" size={22} />
       Facebook
     </a>

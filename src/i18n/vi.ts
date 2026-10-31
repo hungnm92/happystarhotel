@@ -37,7 +37,7 @@ const vi = {
     lobbyAlt: 'Sảnh lễ tân Happy Star Hotel',
   },
   rooms: {
-    title: 'Chọn phòng',
+    title: '7 hạng phòng cho cặp đôi, gia đình và nhóm',
     lead: 'Giá thay đổi theo ngày và mùa. Nhắn ngày nhận phòng và số khách, lễ tân sẽ báo giá tốt nhất cho hạng phòng bạn chọn.',
     tiers: {
       window: 'Standard & Superior — phòng có cửa sổ',
@@ -68,7 +68,7 @@ const vi = {
       `Xin chào Happy Star Hotel, tôi muốn hỏi giá phòng ${room}. Ngày nhận phòng: …, số khách: …`,
   },
   amenities: {
-    title: 'Có sẵn cho bạn',
+    title: 'Tiện nghi và dịch vụ',
     inRoomTitle: 'Trong phòng',
     inRoom: [
       'Wi-Fi miễn phí',
@@ -96,7 +96,7 @@ const vi = {
     groups: 'Đặt từ 5 phòng trở lên: liên hệ để có giá đoàn',
   },
   reviews: {
-    title: 'Khách nói gì về chúng tôi',
+    title: 'Đánh giá của khách trên Agoda',
     lead: 'Điểm trung bình từ khách đã ở và đánh giá trên Agoda.',
     overall: 'Tuyệt vời',
     basedOn: (n: number) => `${n} đánh giá đã xác thực`,
@@ -112,9 +112,10 @@ const vi = {
   gallery: {
     title: 'Hình ảnh khách sạn',
     open: 'Phóng to ảnh',
+    corridorAlt: 'Hành lang Happy Star Hotel',
   },
   location: {
-    title: 'Ở gần mọi thứ bạn muốn đi',
+    title: 'Vị trí gần biển Trần Phú, trung tâm Nha Trang',
     lead: '132/40 Hùng Vương nằm trong hẻm nên ban đêm yên tĩnh. Khi tới đầu hẻm, gọi lễ tân nếu cần chỉ đường.',
     places: {
       beach: 'Biển Trần Phú',

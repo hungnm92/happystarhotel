@@ -2,7 +2,7 @@
 import { Image, getImage } from 'astro:assets';
 import Icon from './Icon.astro';
 import { roomImage } from '../lib/images';
-import { links } from '../data/contact';
+import { contact, links } from '../data/contact';
 import type { Room } from '../data/rooms';
 import type { Locale } from '../i18n';
 import type { Dict } from '../i18n/vi';
@@ -41,7 +41,7 @@ const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsa
 <article class="card" id={room.slug} data-gallery={gallery}>
   <div class="media">
     <button class="main" type="button" data-index="0" aria-label={`${room.name} – ${r.viewPhotos(room.images.length)}`}>
-      <Image src={roomImage(main)} alt={room.name} widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 560px" />
+      <Image src={roomImage(main)} alt={`${room.name} – ${contact.name}`} widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 560px" />
       <span class="count"><Icon name="images" size={16} />{r.viewPhotos(room.images.length)}</span>
     </button>
     <div class="thumbs">
@@ -56,7 +56,7 @@ const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsa
   </div>
 
   <div class="body">
-    <h3>{room.name}</h3>
+    <h4>{room.name}</h4>
     <ul class="specs">
       <li><Icon name="size" size={18} /><span>{room.size} m²</span></li>
       <li><Icon name="bed" size={18} /><span>{bedText}</span></li>
@@ -67,10 +67,10 @@ const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsa
 
 
     <div class="ask">
-      <a class="btn btn-sea" href={first.href} target="_blank" rel="noopener" data-cta={`room-${first.key}`} data-room={room.slug}>
+      <a class="btn btn-sea" href={first.href} target="_blank" rel="nofollow noopener" data-cta={`room-${first.key}`} data-room={room.slug}>
         <Icon name={first.icon} size={20} />{first.label}
       </a>
-      <a class="btn btn-line" href={second.href} target="_blank" rel="noopener" data-cta={`room-${second.key}`} data-room={room.slug}>
+      <a class="btn btn-line" href={second.href} target="_blank" rel="nofollow noopener" data-cta={`room-${second.key}`} data-room={room.slug}>
         <Icon name={second.icon} size={20} />{second.label}
       </a>
     </div>
@@ -152,7 +152,7 @@ const [first, second] = t.primaryChannel === 'zalo' ? [zalo, whatsapp] : [whatsa
     padding: clamp(1.25rem, 3vw, 1.75rem);
   }
 
-  h3 {
+  h4 {
     font-size: var(--step-2);
   }
 

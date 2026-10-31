@@ -30,7 +30,7 @@ const primary = channels(t)[0];
 
   <div class="container bar">
     <div class="copy">
-      <h1>{t.hero.title}</h1>
+      <h1><span class="brand">{contact.name}</span>{t.hero.title}</h1>
       <p class="lead">{t.hero.lead}</p>
       <p class="address">
         <Icon name="pin" size={18} />
@@ -45,7 +45,7 @@ const primary = channels(t)[0];
         <span>{t.hero.perNight}</span>
       </p>
       <div class="actions">
-        <a class="btn btn-sun" href={primary.href} target="_blank" rel="noopener" data-cta={`hero-${primary.key}`}>
+        <a class="btn btn-sun" href={primary.href} target="_blank" rel="nofollow noopener" data-cta={`hero-${primary.key}`}>
           <Icon name={primary.icon} />
           {t.hero.cta(primary.label)}
         </a>
@@ -90,6 +90,14 @@ const primary = channels(t)[0];
     font-weight: 900;
     color: var(--ink);
     max-width: 22ch;
+  }
+
+  .brand {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: var(--step-0);
+    font-weight: 800;
+    color: var(--sea);
   }
 
   .lead {
