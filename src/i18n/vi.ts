@@ -17,8 +17,8 @@ const vi = {
     menu: 'Mở menu',
   },
   hero: {
-    title: 'Ngủ ngon, đi bộ 4 phút là tới biển Nha Trang',
-    lead: 'Happy Star Hotel nằm trong hẻm yên tĩnh trên đường Hùng Vương, giữa khu phố du lịch. Phòng sạch, nhân viên thân thiện, giá bình dân.',
+    title: 'Thoải mái lưu trú – Dễ dàng khám\u00a0phá Nha Trang',
+    lead: 'Happy Star Hotel cách biển Trần Phú khoảng 300m, sở hữu 7 hạng phòng đa dạng cùng tiện nghi thiết yếu. Lựa chọn phù hợp cho gia đình, nhóm bạn và khách công tác với mức chi phí hợp lý.',
     priceFrom: 'Giá từ',
     perNight: '/ đêm',
     cta: (channel: string) => `Nhắn ${channel}`,

@@ -19,8 +19,8 @@ const en: Dict = {
     menu: 'Open menu',
   },
   hero: {
-    title: 'Sleep well, walk 4 minutes to the beach',
-    lead: 'Happy Star Hotel sits in a quiet lane off Hung Vuong street, right in the tourist quarter of Nha Trang. Clean rooms, friendly staff, budget prices.',
+    title: 'A comfortable stay, an easy base for exploring Nha Trang',
+    lead: 'Happy Star Hotel is about 300 m from Tran Phu Beach, with 7 room types and all the essentials. A good fit for families, groups of friends and business travellers at a sensible price.',
     priceFrom: 'Rooms from',
     perNight: '/ night',
     cta: (channel: string) => `Message us on ${channel}`,

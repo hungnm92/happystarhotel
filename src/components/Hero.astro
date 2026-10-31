@@ -30,7 +30,13 @@ const primary = channels(t)[0];
 
   <div class="container bar">
     <div class="copy">
-      <h1><span class="brand">{contact.name}</span>{t.hero.title}</h1>
+      <h1>
+        <span class="brand">{contact.name}</span>
+        {/* Tiêu đề có dấu " – " thì xuống dòng tại đó cho dễ đọc */}
+        {t.hero.title.split(' – ').map((part, i, all) => (
+          <span class="line">{part}{i < all.length - 1 && ' –'}</span>
+        ))}
+      </h1>
       <p class="lead">{t.hero.lead}</p>
       <p class="address">
         <Icon name="pin" size={18} />
@@ -89,7 +95,12 @@ const primary = channels(t)[0];
     font-size: var(--step-3);
     font-weight: 900;
     color: var(--ink);
-    max-width: 22ch;
+    max-width: 24ch;
+    text-wrap: balance;
+  }
+
+  .line {
+    display: block;
   }
 
   .brand {
