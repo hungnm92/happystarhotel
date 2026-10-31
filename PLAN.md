@@ -176,6 +176,6 @@ HappyStar/
 
 1. **Sức chứa trẻ em** từng hạng (brochure ghi "+ 2 TE", bảng giá ghi ít hơn) → tạm dùng số trong bảng giá.
 2. **Ảnh bổ sung:** mặt tiền ban ngày, ban công + view, sân thượng, bữa sáng → tạm dùng ảnh trích từ PDF. Logo dùng luôn `logo.webp` (đã chốt, không cần vector).
-5. **GA4:** chủ KS gửi mã sau.
+5. ~~**GA4:**~~ ✅ Đã gắn `G-0BB9JHVXGG` (31/10/2026).
 3. **Ngôn ngữ:** đã làm VI / EN / KO / RU — bản Hàn và Nga cần người bản ngữ đọc lại.
 4. Tên miền đã mua chưa và đang quản lý DNS ở đâu (để trỏ về Netlify lúc go-live).

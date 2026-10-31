@@ -40,7 +40,9 @@ Mỗi lần push lên nhánh `main`, Netlify tự build lại trang.
 
 ## Đo lượt bấm nút liên hệ
 
-Mọi nút liên hệ có thuộc tính `data-cta` (vd. `hero-zalo`, `room-whatsapp`, `contact-call`). Khi có mã GA4 (sẽ bổ sung sau) và gắn Google Analytics 4 (`gtag`) hoặc Plausible vào `src/layouts/Layout.astro`, trang sẽ tự gửi sự kiện `contact_click` kèm tên nút, hạng phòng và ngôn ngữ.
+Google Analytics 4 (`G-0BB9JHVXGG`) được gắn trong `src/layouts/Layout.astro`, chỉ khi build (`npm run dev` trên máy không gửi số liệu).
+
+Mọi nút liên hệ có thuộc tính `data-cta` (vd. `hero-zalo`, `room-whatsapp`, `contact-call`). Mỗi lần bấm, trang gửi sự kiện `contact_click` kèm `cta` (tên nút), `room` (hạng phòng) và `lang` (ngôn ngữ). Trong GA4 nên đánh dấu `contact_click` là **sự kiện chính** (Key event) để đếm lượt khách liên hệ.
 
 ## Ghi chú
 

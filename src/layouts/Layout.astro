@@ -11,6 +11,9 @@ interface Props {
 }
 
 const { locale, t } = Astro.props;
+// Google Analytics 4 — chỉ gắn khi build (npm run build), chạy dev trên máy không gửi số liệu
+const ga4Id = 'G-0BB9JHVXGG';
+const loadGa4 = import.meta.env.PROD;
 const site = Astro.site!;
 const canonical = new URL(localePath(locale), site).href;
 const ogImage = new URL('/og-image.jpg', site).href;
@@ -78,6 +81,23 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    {
+      loadGa4 && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} />
+          <script is:inline define:vars={{ ga4Id }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', ga4Id);
+          </script>
+        </>
+      )
+    }
   </head>
   <body>
     <slot />
