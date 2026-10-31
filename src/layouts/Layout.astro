@@ -16,7 +16,7 @@ const ga4Id = 'G-0BB9JHVXGG';
 const loadGa4 = import.meta.env.PROD;
 const site = Astro.site!;
 const canonical = new URL(localePath(locale), site).href;
-const ogImage = new URL('/og-image.jpg', site).href;
+const ogImage = new URL('/og-banner.jpg', site).href;
 const ogLocale = { vi: 'vi_VN', en: 'en_US', ko: 'ko_KR', ru: 'ru_RU' }[locale];
 
 const jsonLd = {
