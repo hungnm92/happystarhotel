@@ -49,4 +49,4 @@ Build rồi `rsync` thư mục `dist/` lên máy chủ. Push lên GitHub **khôn
 | `@` | A | `161.118.227.225` |
 | `www` | A | `161.118.227.225` (thay cho CNAME Netlify) |
 
-Giữ nguyên bản ghi TXT `google-site-verification`. Sau khi DNS đổi, Caddy tự xin chứng chỉ HTTPS trong vài phút (`ssh crm-web 'sudo journalctl -u caddy -n 50'` để xem). Sau đó xoá khối `http://161.118.227.225` trong `deploy/Caddyfile` rồi chạy lại `npm run deploy:caddy`.
+Giữ nguyên bản ghi TXT `google-site-verification`. Sau khi DNS đổi, Caddy tự xin chứng chỉ HTTPS trong vài phút (`ssh crm-web 'sudo journalctl -u caddy -n 50'` để xem). Nếu đổi DNS mà chưa có HTTPS, chạy `ssh crm-web 'sudo systemctl reload caddy'` để Caddy xin lại ngay.

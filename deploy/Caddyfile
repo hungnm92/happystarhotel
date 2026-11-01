@@ -32,9 +32,3 @@ happystarhotelnhatrang.com {
 www.happystarhotelnhatrang.com {
 	redir https://happystarhotelnhatrang.com{uri} permanent
 }
-
-# Xem thử bằng IP trước khi trỏ DNS. Xoá khối này sau khi chuyển DNS xong.
-http://161.118.227.225 {
-	import site
-	header X-Robots-Tag "noindex, nofollow"
-}
