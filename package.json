@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy": "astro build && rsync -az --delete dist/ ${DEPLOY_HOST:-happystar}:/var/www/happystar/",
+    "deploy:caddy": "scp deploy/Caddyfile ${DEPLOY_HOST:-happystar}:/tmp/Caddyfile && ssh ${DEPLOY_HOST:-happystar} 'sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile && sudo caddy validate --config /etc/caddy/Caddyfile && sudo systemctl reload caddy'"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

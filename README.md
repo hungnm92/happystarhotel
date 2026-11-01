@@ -30,7 +30,11 @@ Trang chỉ ghi một mức "Giá từ …/đêm" ở đầu trang, lấy từ `
 1. Bỏ ảnh vào `src/assets/rooms/<tên-hạng>/` (ảnh gốc càng to càng tốt, Astro tự nén và tạo nhiều cỡ).
 2. Thêm đường dẫn vào mảng `images` của hạng phòng trong `src/data/rooms.ts`. Ảnh đầu tiên là ảnh chính.
 
-## Deploy lên Netlify
+## Deploy lên VPS Oracle
+
+Đang chuyển sang VPS Oracle Cloud (Ubuntu + Caddy) — cài đặt và lệnh deploy xem [deploy/README.md](deploy/README.md). Tóm tắt: `npm run deploy`.
+
+## Deploy lên Netlify (cũ)
 
 1. Đẩy code lên GitHub.
 2. Netlify → **Add new site → Import an existing project** → chọn repo. Cấu hình build đã có sẵn trong `netlify.toml` (`npm run build`, thư mục `dist`).
