@@ -2,7 +2,7 @@
 
 > **Trạng thái:** đã dựng xong bản đầu (VI / EN / KO / RU) — xem `README.md` để chạy, sửa giá và deploy.
 >
-> Mục tiêu: 1 trang landing quảng bá hình ảnh khách sạn, dẫn khách liên hệ đặt phòng qua Zalo / WhatsApp / Facebook / Gọi / Email. Không blog, không tin tức, không đặt phòng online. Host trên Netlify.
+> Mục tiêu: 1 trang landing quảng bá hình ảnh khách sạn, dẫn khách liên hệ đặt phòng qua Zalo / WhatsApp / Facebook / Gọi / Email. Không blog, không tin tức, không đặt phòng online. Host trên VPS Oracle Cloud (từ 01/11/2026, trước đó Netlify).
 
 ---
 

@@ -1,7 +1,7 @@
 # Happy Star Hotel Nha Trang — landing page
 
 Trang giới thiệu khách sạn, 4 ngôn ngữ: Tiếng Việt (`/`), English (`/en/`), 한국어 (`/ko/`), Русский (`/ru/`).
-Làm bằng [Astro](https://astro.build), xuất HTML tĩnh, host trên Netlify.
+Làm bằng [Astro](https://astro.build), xuất HTML tĩnh, host trên VPS Oracle Cloud (Ubuntu + Caddy).
 
 ## Chạy trên máy
 
@@ -30,17 +30,13 @@ Trang chỉ ghi một mức "Giá từ …/đêm" ở đầu trang, lấy từ `
 1. Bỏ ảnh vào `src/assets/rooms/<tên-hạng>/` (ảnh gốc càng to càng tốt, Astro tự nén và tạo nhiều cỡ).
 2. Thêm đường dẫn vào mảng `images` của hạng phòng trong `src/data/rooms.ts`. Ảnh đầu tiên là ảnh chính.
 
-## Deploy lên VPS Oracle
+## Đưa trang lên
 
-Đang chuyển sang VPS Oracle Cloud (Ubuntu + Caddy) — cài đặt và lệnh deploy xem [deploy/README.md](deploy/README.md). Tóm tắt: `npm run deploy`.
+```bash
+npm run deploy
+```
 
-## Deploy lên Netlify (cũ)
-
-1. Đẩy code lên GitHub.
-2. Netlify → **Add new site → Import an existing project** → chọn repo. Cấu hình build đã có sẵn trong `netlify.toml` (`npm run build`, thư mục `dist`).
-3. **Domain management → Add domain** `happystarhotelnhatrang.com`, rồi trỏ DNS theo hướng dẫn của Netlify (hoặc chuyển nameserver về Netlify). HTTPS được cấp tự động. `www.` tự chuyển về tên miền chính.
-
-Mỗi lần push lên nhánh `main`, Netlify tự build lại trang.
+Build rồi đẩy `dist/` lên VPS Oracle (`161.118.227.225`) qua lối tắt SSH `crm-web`. Push lên GitHub **không** tự deploy. Cài đặt máy chủ, Caddy, HTTPS và DNS: xem [deploy/README.md](deploy/README.md).
 
 ## Đo lượt bấm nút liên hệ
 
@@ -55,4 +51,4 @@ Mọi nút liên hệ có thuộc tính `data-cta` (vd. `hero-zalo`, `room-whats
 
 ## Nhánh làm việc
 
-Sửa trên nhánh `dev`, xem ổn rồi mới merge vào `main` — Netlify chỉ deploy khi `main` thay đổi.
+Sửa trên nhánh `dev`, xem ổn rồi merge vào `main` và chạy `npm run deploy` từ `main`.
