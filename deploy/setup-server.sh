@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Cài đặt lần đầu trên VPS Ubuntu (Oracle Cloud). Chạy một lần:
-#   ssh happystar 'bash -s' < deploy/setup-server.sh
+#   ssh crm-web 'bash -s' < deploy/setup-server.sh
 set -euo pipefail
 
 # Caddy từ kho chính thức
@@ -13,7 +13,7 @@ sudo apt-get install -y caddy
 
 # Ảnh Ubuntu của Oracle chặn mọi cổng trừ 22 bằng iptables — mở 80 và 443
 for port in 80 443; do
-  if ! sudo iptables -C INPUT -p tcp --dport "$port" -m state --state NEW -j ACCEPT 2>/dev/null; then
+  if ! sudo iptables -S INPUT | grep -q -- "--dport $port -j ACCEPT"; then
     sudo iptables -I INPUT 6 -p tcp --dport "$port" -m state --state NEW -j ACCEPT
   fi
 done
